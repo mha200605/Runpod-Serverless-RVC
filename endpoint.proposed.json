@@ -1,0 +1,23 @@
+{
+  "_comment": "PROPOSED first-test configuration. NOT applied. Field names match the RunPod MCP create-endpoint schema. 'image' is unknown until the GitHub build finishes (see README step 3); if you create the endpoint from the console's GitHub flow instead, copy these values into its form.",
+  "name": "rvc-v2-worker-test",
+  "type": "QUEUE",
+  "image": "<filled in after the GitHub build>",
+  "disk": 20,
+  "env": {
+    "DEFAULT_RETURN_MODE": "base64",
+    "PRELOAD_ENGINE": "1",
+    "ALLOW_PRIVATE_URLS": "0",
+    "MAX_INLINE_OUTPUT_MB": "7",
+    "LOG_LEVEL": "INFO"
+  },
+  "gpu": {
+    "pools": ["AMPERE_16", "AMPERE_24"],
+    "count": 1,
+    "minCudaVersion": "12.8"
+  },
+  "scaling": {"type": "QUEUE_DELAY", "queueDelay": 4},
+  "workers": {"min": 0, "max": 1, "idleTimeout": 60},
+  "flashboot": "FLASHBOOT",
+  "timeout": 300000
+}
